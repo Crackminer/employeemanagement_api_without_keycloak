@@ -34,4 +34,19 @@ export class EmployeeListComponent {
   public resetSelectedEmployee() : void {
     this.selectedEmployee = undefined;
   }
+
+  showAll() {
+    //in this case go back to the top (refresh page like)
+
+  }
+
+  addEmployee() {
+    //show add employee screen
+  }
+
+  contentChanged(event: Event) {
+    //search employees for matches and highlight them. if search bar is empty dont highlight anything
+    let searchValue = (event.target as HTMLInputElement).value;
+    console.log(searchValue)
+  }
 }

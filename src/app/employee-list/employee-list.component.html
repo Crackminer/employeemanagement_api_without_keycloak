@@ -1,4 +1,10 @@
 
+<div>
+  <input type="text" placeholder="Search..." (input)="contentChanged($event)" >
+  <button (click)="addEmployee()">add</button>
+  <button (click)="showAll()">all</button>
+</div>
+
 <!-- Hier wird dynamisch für alle einträge in der datenbank ein listeneintrag erstellt. -->
 <ul>
   <li *ngFor="let employee of employees$ | async">
