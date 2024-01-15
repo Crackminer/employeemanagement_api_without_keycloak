@@ -7,6 +7,30 @@ Erstelle einen Fork dieses Projektes auf Github.
 * Docker https://docs.docker.com/get-docker/
 * Docker compose (bei Windows und Mac schon in Docker enthalten) https://docs.docker.com/compose/install/
 
+
+### Um das Projekt komplett zu starten und auch zu testen:
+
+Öffnet bitte 2 Terminals.
+
+Im 1. Terminal führt ihr folgende Befehle aus:
+
+```bash
+cd docker
+```
+
+```bash
+docker compose up
+```
+
+Hiermit habt ihr erfolgreich das Backend (die Datenbank) gestartet. Nun können wir unser Frontend einmal starten:
+
+Im 2. Terminal macht ihr nun folgenden Befehl:
+```bash
+ng serve
+```
+
+Damit ist nun auch das Frontend gestartet und ihr könnt euch ans Werk machen dies je nach belieben zu bearbeiten.
+
 ### Terminal öffnen
 
 für alles gilt, im Terminal im Ordner docker sein

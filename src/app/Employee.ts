@@ -1,3 +1,6 @@
+/*
+* Dies ist ein interface eines Employees, mit dem wir überall arbeiten können und sollten.
+*/
 export class Employee {
   constructor(public id?: number,
               public lastName?: string,

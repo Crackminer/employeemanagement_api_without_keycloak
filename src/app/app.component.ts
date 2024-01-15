@@ -10,6 +10,7 @@ import {Observable, of} from "rxjs";
 })
 export class AppComponent {
 
+  title = "employeeFrontendStarter";
   constructor() {
  }
 
