@@ -25,4 +25,13 @@ export class EmployeeListComponent {
   }
 
   protected readonly of = of;
+  selectedEmployee?: Employee;
+
+  onSelect(employee: Employee) {
+    this.selectedEmployee = employee;
+  }
+
+  public resetSelectedEmployee() : void {
+    this.selectedEmployee = undefined;
+  }
 }

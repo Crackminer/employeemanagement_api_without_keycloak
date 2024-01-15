@@ -1,0 +1,42 @@
+<div id="button_list" *ngIf="employee">
+  <div>
+    <button type="button" (click)="back()">
+      back
+    </button>
+    <button type="button" (click)="edit()">
+      edit
+    </button>
+    <button type="button" (click)="delete()">
+      delete
+    </button>
+    <button type="button" (click)="all()">
+      all
+    </button>
+  </div>
+  <div>
+    <p>
+      <label for="employee-firstname">First name: </label>
+      <input id="employee-firstname" [(ngModel)]="employee.firstName" placeholder="firstname" disabled>
+    </p>
+    <p>
+    <label for="employee-lastname">Last name: </label>
+    <input id="employee-lastname" [(ngModel)]="employee.lastName" placeholder="lastname" contenteditable="false" disabled>
+    </p>
+    <p>
+    <label for="street">Street: </label>
+    <input id="street" [(ngModel)]="employee.street" placeholder="street" contenteditable="false" disabled>
+    </p>
+    <p>
+    <label for="postcode">Postal Code: </label>
+    <input id="postcode" [(ngModel)]="employee.postcode" placeholder="postcode" contenteditable="false" disabled>
+    </p>
+    <p>
+    <label for="city">City: </label>
+    <input id="city" [(ngModel)]="employee.city" placeholder="city" contenteditable="false" disabled>
+    </p>
+    <p>
+    <label for="phone">Phone: </label>
+    <input id="phone" [(ngModel)]="employee.phone" placeholder="phone" contenteditable="false" disabled>
+    </p>
+  </div>
+</div>

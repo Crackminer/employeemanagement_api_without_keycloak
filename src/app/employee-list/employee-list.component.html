@@ -2,6 +2,11 @@
 <!-- Hier wird dynamisch für alle einträge in der datenbank ein listeneintrag erstellt. -->
 <ul>
   <li *ngFor="let employee of employees$ | async">
-    {{employee.lastName }}, {{employee.firstName}}
+    <button type="button" (click)="onSelect(employee)" [class.selected]="employee === selectedEmployee">
+      <span class="idbadge">{{employee.id}}</span>
+      <span class="name">{{employee.firstName}} {{employee.lastName}}</span>
+
+    </button>
   </li>
 </ul>
+<app-employee-editor [employee]="selectedEmployee"></app-employee-editor>
