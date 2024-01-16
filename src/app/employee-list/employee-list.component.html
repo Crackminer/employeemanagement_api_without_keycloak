@@ -6,13 +6,14 @@
 </div>
 
 <!-- Hier wird dynamisch für alle einträge in der datenbank ein listeneintrag erstellt. -->
-<ul>
+<ul class="employees">
   <li *ngFor="let employee of employees$ | async">
     <button type="button" (click)="onSelect(employee)" [class.selected]="employee === selectedEmployee">
       <span class="idbadge">{{employee.id}}</span>
       <span class="name">{{employee.firstName}} {{employee.lastName}}</span>
-
     </button>
   </li>
 </ul>
+
+<!-- Hiermit wird aufgerufen, dass der employee-editor unter der Liste aller employees sein soll (was laut wireframe nicht richtig ist) -->
 <app-employee-editor [employee]="selectedEmployee"></app-employee-editor>
