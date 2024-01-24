@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Observable, of} from "rxjs";
 import {Employee} from "../Employee";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -10,10 +10,11 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class EmployeeListComponent implements OnInit{
 
-  employees$!: Employee[];
+  employees$: Observable<Employee[]>;
   search :string = "";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private changeDetector: ChangeDetectorRef) {
+    this.employees$ = of([]);
     this.fetchData();
   }
 
@@ -22,13 +23,13 @@ export class EmployeeListComponent implements OnInit{
   }
 
   fetchData() {
-    this.http.get<Employee[]>('http://localhost:8089/employees', {
+    this.employees$ = this.http.get<Employee[]>('http://localhost:8089/employees', {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
-    }).subscribe( employees => {
-      this.employees$ = employees;
     });
+    this.changeDetector.markForCheck();
   }
+
 
   protected readonly of = of;
   selectedEmployee?: Employee;
@@ -83,9 +84,7 @@ export class EmployeeListComponent implements OnInit{
         "postcode": `${employee.postcode}`,
         "city": `${employee.city}`,
         "phone": `${employee.phone}`,
-        "skillSet": [
-          0
-        ]
+        "skillSet": []
         },
       {
         headers: new HttpHeaders()
@@ -95,9 +94,6 @@ export class EmployeeListComponent implements OnInit{
   }
 
   update(employee: Employee) {
-    let observableskills = this.http.get<number[]>(`http://localhost:8089/employees/${employee.id}/qualifications`);
-    let skills: number[] = [];
-    let promise = observableskills.forEach(skillArr => {skills = skillArr});
     let response = this.http.put<Employee>(`http://localhost:8089/employees/${employee.id}/`,
       {
         "lastName": `${employee.lastName}`,
@@ -105,13 +101,18 @@ export class EmployeeListComponent implements OnInit{
         "street": `${employee.street}`,
         "postcode": `${employee.postcode}`,
         "city": `${employee.city}`,
-        "phone": `${employee.phone}`,
-        "skillSet": skills,
+        "phone": `${employee.phone}`
         },
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/json')
       });
     return response;
+  }
+
+  changeDone()
+  {
+    this.changeDetector.detectChanges();
+    this.changeDetector.markForCheck();
   }
 }

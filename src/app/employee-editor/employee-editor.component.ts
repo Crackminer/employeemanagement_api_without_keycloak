@@ -25,7 +25,9 @@ export class EmployeeEditorComponent {
     this.employee = undefined;
     this.ogEmployee = undefined;
     this.isDisabled = true;
+    this.listComponent.changeDone();
     this.listComponent.resetSelectedEmployee();
+    this.listComponent.changeDone();
   }
 
   edit(employee: Employee) {
@@ -49,6 +51,7 @@ export class EmployeeEditorComponent {
     }
     //call database to delete
     this.listComponent.delete(this.employee).subscribe();
+    this.listComponent.changeDone();
     this.back();
   }
 
@@ -83,6 +86,7 @@ export class EmployeeEditorComponent {
       if (this.ogEmployee === undefined || this.ogEmployee.id === new Employee().id)
       {
         //added new employee
+        this.listComponent.changeDone();
         this.back();
       }
       else
