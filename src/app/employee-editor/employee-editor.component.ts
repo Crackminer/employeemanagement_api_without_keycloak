@@ -31,7 +31,7 @@ export class EmployeeEditorComponent {
     //make buttons editable
     //make other buttons visible and hide some buttons
     this.isDisabled = false;
-    this.ogEmployee = employee;
+    this.ogEmployee  = new Employee(employee.id, employee.lastName, employee.firstName, employee.street, employee.postcode, employee.city, employee.phone);
   }
 
   areYouSureYouWantToDelete()
