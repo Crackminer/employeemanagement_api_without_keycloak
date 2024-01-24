@@ -48,7 +48,7 @@ export class EmployeeEditorComponent {
       return;
     }
     //call database to delete
-    this.listComponent.delete(this.employee);
+    this.listComponent.delete(this.employee).subscribe();
     this.back();
   }
 
@@ -66,12 +66,12 @@ export class EmployeeEditorComponent {
         if (this.ogEmployee === undefined || this.ogEmployee.id === new Employee().id)
         {
           //add new employee
-          this.listComponent.add(this.employee);
+          this.listComponent.add(this.employee).subscribe();
         }
         else
         {
           //update existing employee
-          this.listComponent.update(this.employee);
+          this.listComponent.update(this.employee).subscribe();
         }
       }
       catch {

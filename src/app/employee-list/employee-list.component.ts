@@ -8,20 +8,25 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnInit{
 
-  employees$: Observable<Employee[]>;
+  employees$!: Employee[];
   search :string = "";
 
   constructor(private http: HttpClient) {
-    this.employees$ = of([]);
+    this.fetchData();
+  }
+
+  ngOnInit() {
     this.fetchData();
   }
 
   fetchData() {
-    this.employees$ = this.http.get<Employee[]>('http://localhost:8089/employees', {
+    this.http.get<Employee[]>('http://localhost:8089/employees', {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
+    }).subscribe( employees => {
+      this.employees$ = employees;
     });
   }
 
@@ -66,7 +71,7 @@ export class EmployeeListComponent {
   delete(employee: Employee) {
     //call database
     let response = this.http.delete<Employee>(`http://localhost:8089/employees/${employee.id}/`);
-    console.log(response);
+    return response;
   }
 
   add(employee: Employee) {
@@ -86,7 +91,7 @@ export class EmployeeListComponent {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/json')
       });
-    console.log(response);
+    return response;
   }
 
   update(employee: Employee) {
@@ -107,6 +112,6 @@ export class EmployeeListComponent {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/json')
       });
-    console.log(response);
+    return response;
   }
 }
