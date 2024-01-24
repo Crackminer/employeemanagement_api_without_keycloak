@@ -1,0 +1,28 @@
+div {
+  border: 2px solid black;
+  margin: auto;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  text-align: left;
+}
+ul{
+  border-bottom: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  margin: auto;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+}
+#all_button{
+  float: right;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#add_button{
+  padding-left: 10px;
+  padding-right: 10px;
+}

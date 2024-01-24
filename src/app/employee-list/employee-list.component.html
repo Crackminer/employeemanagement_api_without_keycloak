@@ -1,8 +1,10 @@
+<link rel="stylesheet" href="employee-list.component.css">
 
 <div *ngIf="selectedEmployee === undefined">
+  <h1>Employee Management Service</h1>
   <input type="text" placeholder="Search..." (input)="contentChanged($event)" [value]="search" >
-  <button (click)="addEmployee()">add</button>
-  <button (click)="showAll()">all</button>
+  <button id="add_button" (click)="addEmployee()">add</button>
+  <button id="all_button" (click)="showAll()">all</button>
 </div>
 
 <!-- Hier wird dynamisch für alle einträge in der datenbank ein listeneintrag erstellt. -->
