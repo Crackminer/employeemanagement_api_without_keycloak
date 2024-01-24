@@ -10,11 +10,11 @@ import {EmployeeListComponent} from "../employee-list/employee-list.component";
 export class EmployeeEditorComponent {
 
   @Input() employee?: Employee;
-  ogEmployee: Employee = new Employee();
+  ogEmployee: Employee | undefined = undefined;
   isDisabled = true;
-  hideNoDelete: boolean = true;
-  hideAcknowledgeDelete: boolean = true;
-  hideErrorSaving: boolean = true;
+  showNoDelete: boolean = false;
+  showAcknowledgeDelete: boolean = false;
+  showErrorSaving: boolean = false;
 
   constructor(private listComponent: EmployeeListComponent) {
     this.isDisabled = true;
@@ -23,6 +23,7 @@ export class EmployeeEditorComponent {
   back() {
     //according to our wireframe this currently is the wrong behaviour
     this.employee = undefined;
+    this.ogEmployee = undefined;
     this.isDisabled = true;
     this.listComponent.resetSelectedEmployee();
   }
@@ -36,18 +37,19 @@ export class EmployeeEditorComponent {
 
   areYouSureYouWantToDelete()
   {
-    this.hideAcknowledgeDelete = false;
+    this.showAcknowledgeDelete = true;
   }
 
   delete() {
-    this.hideAcknowledgeDelete = true;
-    if (this.ogEmployee.id === new Employee().id || this.employee === undefined)
+    this.showAcknowledgeDelete = false;
+    if (this.employee === undefined || this.employee.id === undefined)
     {
-      this.hideNoDelete = false;
+      this.showNoDelete = true;
       return;
     }
     //call database to delete
     this.listComponent.delete(this.employee);
+    this.back();
   }
 
   all() {
@@ -61,7 +63,7 @@ export class EmployeeEditorComponent {
     if (this.employee !== undefined)
     {
       try {
-        if (this.ogEmployee.id === new Employee().id)
+        if (this.ogEmployee === undefined || this.ogEmployee.id === new Employee().id)
         {
           //add new employee
           this.listComponent.add(this.employee);
@@ -74,11 +76,11 @@ export class EmployeeEditorComponent {
       }
       catch {
         //run acknowledgement window
-        this.hideErrorSaving = false;
+        this.showErrorSaving = true;
         return;
       }
       //on successful acknowledge go back to  detail view if edited and go back to all view if added
-      if (this.ogEmployee.id === new Employee().id)
+      if (this.ogEmployee === undefined || this.ogEmployee.id === new Employee().id)
       {
         //added new employee
         this.back();
@@ -98,14 +100,14 @@ export class EmployeeEditorComponent {
   }
 
   hideNoDeleteEmployee() {
-    this.hideNoDelete = true;
+    this.showNoDelete = false;
   }
 
   hideAcknowledgeDeleteEmployee() {
-    this.hideAcknowledgeDelete = true;
+    this.showAcknowledgeDelete = false;
   }
 
   hideErrorSavingEmployee() {
-    this.hideErrorSaving = true;
+    this.showErrorSaving = false;
   }
 }

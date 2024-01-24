@@ -34,6 +34,7 @@ export class EmployeeListComponent {
 
   public resetSelectedEmployee() : void {
     this.selectedEmployee = undefined;
+    this.fetchData();
   }
 
   showAll() {
@@ -64,13 +65,48 @@ export class EmployeeListComponent {
 
   delete(employee: Employee) {
     //call database
+    let response = this.http.delete(`http://localhost:8089/employees/${employee.id}/`);
+    console.log(response);
   }
 
   add(employee: Employee) {
-
+    let response = this.http.post(`http://localhost:8089/employees`,
+      {
+        "lastName": `${employee.lastName}`,
+        "firstName": `${employee.firstName}`,
+        "street": `${employee.street}`,
+        "postcode": `${employee.postcode}`,
+        "city": `${employee.city}`,
+        "phone": `${employee.phone}`,
+        "skillSet": [
+          0
+        ]
+        },
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/json')
+      });
+    console.log(response);
   }
 
   update(employee: Employee) {
-
+    let observableskills = this.http.get<number[]>(`http://localhost:8089/employees/${employee.id}/qualifications`);
+    let skills: number[] = [];
+    let promise = observableskills.forEach(skillArr => {skills = skillArr});
+    let response = this.http.put(`http://localhost:8089/employees/${employee.id}/`,
+      {
+        "lastName": `${employee.lastName}`,
+        "firstName": `${employee.firstName}`,
+        "street": `${employee.street}`,
+        "postcode": `${employee.postcode}`,
+        "city": `${employee.city}`,
+        "phone": `${employee.phone}`,
+        "skillSet": skills,
+        },
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/json')
+      });
+    console.log(response);
   }
 }

@@ -48,13 +48,13 @@
   </div>
 
   <div id="dialogues">
-    <dialog id="noDeleteEmployee" [hidden]="hideNoDelete">
+    <dialog id="noDeleteEmployee" [open]="showNoDelete">
       Cant delete non-existing Employee!
       <button type="button" (click)="hideNoDeleteEmployee()">
         Acknowledge
       </button>
     </dialog>
-    <dialog id="acknowledgeDeleteEmployee" [hidden]="hideAcknowledgeDelete">
+    <dialog id="acknowledgeDeleteEmployee" [open]="showAcknowledgeDelete">
       Are you sure you want to Delete this Employee?
       <button type="button" (click)="delete()">
         Yes
@@ -63,7 +63,7 @@
         No
       </button>
     </dialog>
-    <dialog id="errorSavingEmployee" [hidden]="hideErrorSaving">
+    <dialog id="errorSavingEmployee" [open]="showErrorSaving">
       There was an unexpected Error for saving this Employees data!
       <button type="button" (click)="hideErrorSavingEmployee()">
         Acknowledge
