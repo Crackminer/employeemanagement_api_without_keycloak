@@ -11,6 +11,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 export class EmployeeListComponent {
 
   employees$: Observable<Employee[]>;
+  search :string = "";
 
   constructor(private http: HttpClient) {
     this.employees$ = of([]);
@@ -37,7 +38,7 @@ export class EmployeeListComponent {
 
   showAll() {
     //in this case go back to the top (refresh page like)
-
+    this.search = "";
   }
 
   addEmployee() {
@@ -47,7 +48,17 @@ export class EmployeeListComponent {
 
   contentChanged(event: Event) {
     //search employees for matches and highlight them. if search bar is empty dont highlight anything
-    let searchValue = (event.target as HTMLInputElement).value;
-    console.log(searchValue)
+    this.search = (event.target as HTMLInputElement).value;
+  }
+
+  foundViaSearch(employee :Employee) {
+    if (this.search !== "")
+    {
+      if (employee.firstName !== undefined && employee.lastName !== undefined && employee.firstName.concat(" ", employee.lastName).toLowerCase().search(this.search.toLowerCase()) !== -1)
+      {
+        return "selectedViaSearch";
+      }
+    }
+    return "normalized";
   }
 }

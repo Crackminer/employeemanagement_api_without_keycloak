@@ -1,6 +1,6 @@
 
 <div *ngIf="selectedEmployee === undefined">
-  <input type="text" placeholder="Search..." (input)="contentChanged($event)" >
+  <input type="text" placeholder="Search..." (input)="contentChanged($event)" [value]="search" >
   <button (click)="addEmployee()">add</button>
   <button (click)="showAll()">all</button>
 </div>
@@ -8,7 +8,7 @@
 <!-- Hier wird dynamisch für alle einträge in der datenbank ein listeneintrag erstellt. -->
 <ul class="employees" *ngIf="selectedEmployee === undefined">
   <li *ngFor="let employee of employees$ | async">
-    <button type="button" (click)="onSelect(employee)">
+    <button type="button" (click)="onSelect(employee)" [class.selected]="foundViaSearch(employee)">
       <span class="idBadge">{{employee.id}}</span>
       <span class="name">{{employee.firstName}} {{employee.lastName}}</span>
     </button>
