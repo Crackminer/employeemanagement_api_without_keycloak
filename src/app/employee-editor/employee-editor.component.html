@@ -4,11 +4,17 @@
     <button type="button" (click)="back()">
       back
     </button>
-    <button type="button" (click)="edit()">
+    <button type="button" (click)="edit(employee)" [hidden]="!isDisabled">
       edit
     </button>
-    <button type="button" (click)="delete()">
+    <button type="button" (click)="save()" [hidden]="isDisabled">
+      save
+    </button>
+    <button type="button" (click)="areYouSureYouWantToDelete()" [hidden]="!isDisabled">
       delete
+    </button>
+    <button type="button" (click)="undo()" [hidden]="isDisabled">
+      undo
     </button>
     <button type="button" (click)="all()">
       all
@@ -40,4 +46,29 @@
       <input id="phone" [(ngModel)]="employee.phone" placeholder="phone" contenteditable="false" [disabled]="isDisabled">
     </p>
   </div>
+
+  <div id="dialogues">
+    <dialog id="noDeleteEmployee" [hidden]="hideNoDelete">
+      Cant delete non-existing Employee!
+      <button type="button" (click)="hideNoDeleteEmployee()">
+        Acknowledge
+      </button>
+    </dialog>
+    <dialog id="acknowledgeDeleteEmployee" [hidden]="hideAcknowledgeDelete">
+      Are you sure you want to Delete this Employee?
+      <button type="button" (click)="delete()">
+        Yes
+      </button>
+      <button type="button" (click)="hideAcknowledgeDeleteEmployee()">
+        No
+      </button>
+    </dialog>
+    <dialog id="errorSavingEmployee" [hidden]="hideErrorSaving">
+      There was an unexpected Error for saving this Employees data!
+      <button type="button" (click)="hideErrorSavingEmployee()">
+        Acknowledge
+      </button>
+    </dialog>
+  </div>
+
 </div>
