@@ -1,0 +1,32 @@
+#div1{
+  border: 2px solid black;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  text-align: left;
+}
+#div2{
+  border-bottom: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  margin: auto;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 8px;
+}
+#back_button{
+  margin-right: 10px;
+}
+#edit_button{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#delete_button{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#all_button{
+  margin-left: 10px;
+}

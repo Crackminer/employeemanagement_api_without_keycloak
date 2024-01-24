@@ -1,26 +1,27 @@
 <link rel="stylesheet" href="employee-editor.component.css">
 <div id="button_list" *ngIf="employee">
-  <div>
-    <button type="button" (click)="back()">
+  <div id="div1">
+    <h1>Employee Management Service</h1>
+    <button id="back_button" type="button" (click)="back()">
       back
     </button>
-    <button type="button" (click)="edit(employee)" [hidden]="!isDisabled">
+    <button id="edit_button" type="button" (click)="edit(employee)" [hidden]="!isDisabled">
       edit
     </button>
-    <button type="button" (click)="save()" [hidden]="isDisabled">
+    <button id="save_button" type="button" (click)="save()" [hidden]="isDisabled">
       save
     </button>
-    <button type="button" (click)="areYouSureYouWantToDelete()" [hidden]="!isDisabled">
+    <button id="delete_button" type="button" (click)="areYouSureYouWantToDelete()" [hidden]="!isDisabled">
       delete
     </button>
-    <button type="button" (click)="undo()" [hidden]="isDisabled">
+    <button id="undo_button" type="button" (click)="undo()" [hidden]="isDisabled">
       undo
     </button>
-    <button type="button" (click)="all()">
+    <button id="all_button" type="button" (click)="all()">
       all
     </button>
   </div>
-  <div>
+  <div id="div2">
     <p>
       <label for="employee-firstname">First name: </label>
       <input id="employee-firstname" [(ngModel)]="employee.firstName" placeholder="firstname" [disabled]="isDisabled">
