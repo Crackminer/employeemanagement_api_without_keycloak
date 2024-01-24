@@ -42,6 +42,7 @@ export class EmployeeListComponent {
 
   addEmployee() {
     //show add employee screen
+    this.selectedEmployee = new Employee();
   }
 
   contentChanged(event: Event) {

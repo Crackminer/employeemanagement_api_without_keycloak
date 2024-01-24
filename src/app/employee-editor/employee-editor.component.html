@@ -16,27 +16,27 @@
   <div>
     <p>
       <label for="employee-firstname">First name: </label>
-      <input id="employee-firstname" [(ngModel)]="employee.firstName" placeholder="firstname" disabled>
+      <input id="employee-firstname" [(ngModel)]="employee.firstName" placeholder="firstname" [disabled]="isDisabled">
     </p>
     <p>
-    <label for="employee-lastname">Last name: </label>
-    <input id="employee-lastname" [(ngModel)]="employee.lastName" placeholder="lastname" contenteditable="false" disabled>
+      <label for="employee-lastname">Last name: </label>
+      <input id="employee-lastname" [(ngModel)]="employee.lastName" placeholder="lastname" contenteditable="false" [disabled]="isDisabled">
     </p>
     <p>
-    <label for="street">Street: </label>
-    <input id="street" [(ngModel)]="employee.street" placeholder="street" contenteditable="false" disabled>
+      <label for="street">Street: </label>
+      <input id="street" [(ngModel)]="employee.street" placeholder="street" contenteditable="false" [disabled]="isDisabled">
     </p>
     <p>
-    <label for="postcode">Postal Code: </label>
-    <input id="postcode" [(ngModel)]="employee.postcode" placeholder="postcode" contenteditable="false" disabled>
+      <label for="postcode">Postal Code: </label>
+      <input id="postcode" [(ngModel)]="employee.postcode" placeholder="postcode" contenteditable="false" [disabled]="isDisabled">
     </p>
     <p>
-    <label for="city">City: </label>
-    <input id="city" [(ngModel)]="employee.city" placeholder="city" contenteditable="false" disabled>
+      <label for="city">City: </label>
+      <input id="city" [(ngModel)]="employee.city" placeholder="city" contenteditable="false" [disabled]="isDisabled">
     </p>
     <p>
-    <label for="phone">Phone: </label>
-    <input id="phone" [(ngModel)]="employee.phone" placeholder="phone" contenteditable="false" disabled>
+      <label for="phone">Phone: </label>
+      <input id="phone" [(ngModel)]="employee.phone" placeholder="phone" contenteditable="false" [disabled]="isDisabled">
     </p>
   </div>
 </div>
