@@ -3,11 +3,17 @@
     <button type="button" (click)="back()">
       back
     </button>
-    <button type="button" (click)="edit()">
+    <button type="button" (click)="edit(employee)" [hidden]="!isDisabled">
       edit
     </button>
-    <button type="button" (click)="delete()">
+    <button type="button" (click)="save()" [hidden]="isDisabled">
+      save
+    </button>
+    <button type="button" (click)="delete()" [hidden]="!isDisabled">
       delete
+    </button>
+    <button type="button" (click)="undo()" [hidden]="isDisabled">
+      undo
     </button>
     <button type="button" (click)="all()">
       all
