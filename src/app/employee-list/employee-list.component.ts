@@ -61,4 +61,16 @@ export class EmployeeListComponent {
     }
     return "normalized";
   }
+
+  delete(employee: Employee) {
+    //call database
+  }
+
+  add(employee: Employee) {
+
+  }
+
+  update(employee: Employee) {
+
+  }
 }

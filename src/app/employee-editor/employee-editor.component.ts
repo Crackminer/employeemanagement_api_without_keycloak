@@ -12,6 +12,9 @@ export class EmployeeEditorComponent {
   @Input() employee?: Employee;
   ogEmployee: Employee = new Employee();
   isDisabled = true;
+  hideNoDelete: boolean = true;
+  hideAcknowledgeDelete: boolean = true;
+  hideErrorSaving: boolean = true;
 
   constructor(private listComponent: EmployeeListComponent) {
     this.isDisabled = true;
@@ -31,8 +34,20 @@ export class EmployeeEditorComponent {
     this.ogEmployee = employee;
   }
 
+  areYouSureYouWantToDelete()
+  {
+    this.hideAcknowledgeDelete = false;
+  }
+
   delete() {
+    this.hideAcknowledgeDelete = true;
+    if (this.ogEmployee.id === new Employee().id || this.employee === undefined)
+    {
+      this.hideNoDelete = false;
+      return;
+    }
     //call database to delete
+    this.listComponent.delete(this.employee);
   }
 
   all() {
@@ -45,16 +60,23 @@ export class EmployeeEditorComponent {
     //call database to add new employee or to update existing employee
     if (this.employee !== undefined)
     {
-      if (this.ogEmployee.id === new Employee().id)
-      {
-        //add new employee
+      try {
+        if (this.ogEmployee.id === new Employee().id)
+        {
+          //add new employee
+          this.listComponent.add(this.employee);
+        }
+        else
+        {
+          //update existing employee
+          this.listComponent.update(this.employee);
+        }
       }
-      else
-      {
-        //update existing employee
+      catch {
+        //run acknowledgement window
+        this.hideErrorSaving = false;
+        return;
       }
-      //run acknowledgement window
-
       //on successful acknowledge go back to  detail view if edited and go back to all view if added
       if (this.ogEmployee.id === new Employee().id)
       {
@@ -73,5 +95,17 @@ export class EmployeeEditorComponent {
   undo() {
     //get rid of user input
     this.employee = this.ogEmployee;
+  }
+
+  hideNoDeleteEmployee() {
+    this.hideNoDelete = true;
+  }
+
+  hideAcknowledgeDeleteEmployee() {
+    this.hideAcknowledgeDelete = true;
+  }
+
+  hideErrorSavingEmployee() {
+    this.hideErrorSaving = true;
   }
 }
